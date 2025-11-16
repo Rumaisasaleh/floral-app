@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 // Note: Assuming these paths are correct for your project structure
 import roses from '../../assets/brands/products/roses.jpg';
 import lilies from '../../assets/brands/products/lillies.jpg';
-import orchids from '../../assets/brands/products/orchids.jpg';
-import anthuriums from '../../assets/brands/products/anthuriums.jpg';
+import orchids from '../../assets/brands/products/Orchids.jpg';
+import anthuriums from '../../assets/brands/products/Anthuriums.jpg';
 import babysbreath from '../../assets/brands/products/babysbreath.jpg';
 import Chrysanthemums from '../../assets/brands/products/Chrysanthemums.jpg';
 import Daisies from '../../assets/brands/products/Daisies.jpg';

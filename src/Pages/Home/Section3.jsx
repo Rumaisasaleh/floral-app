@@ -3,10 +3,9 @@ import { Container, Row, Col } from 'react-bootstrap'
 // ... (Your existing imports)
 import roses from '../../assets/brands/products/roses.jpg'
 import lilies from '../../assets/brands/products/lillies.jpg'
-import orchids from '../../assets/brands/products/orchids.jpg'
+import orchids from '../../assets/brands/products/Orchids.jpg'
 import Daisies from '../../assets/brands/products/Daisies.jpg'
-// ... (The rest of your image imports)
-import anthuriums from '../../assets/brands/products/anthuriums.jpg'
+import anthuriums from '../../assets/brands/products/Anthuriums.jpg'
 import babysbreath from '../../assets/brands/products/babysbreath.jpg'
 import Chrysanthemums from '../../assets/brands/products/Chrysanthemums.jpg'
 import tulips from '../../assets/brands/products/Tulips.jpg'
