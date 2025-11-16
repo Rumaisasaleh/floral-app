@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
-import promotionImg from '../../assets/promotion.jpeg'
+import promotionImg from '../../assets/brands/promotion.jpg'
 
 function Section4() {
   return (
@@ -12,27 +12,29 @@ function Section4() {
                     <img src={promotionImg} width={550} className='img-fluid' alt="promotion" />
                 </Col>
                 <Col lg={6} className='px-5'>
-                    <h2>Made with love. Delivered with care.</h2>
-                    <p>Every meal we deliver carries more than just flavor —
-                       it carries moments of happiness, comfort, and connection.</p>
+                    <h2>Grown with love Delivered with care.</h2>
+                    <p>Every bouquet we deliver carries more than just blooms — 
+                        it carries moments of happiness, comfort, and connection.
+                    </p>
+
                     <ul>
                         <li>
-                            <p>From spicy bites to sweet treats,
-                            each dish is prepared with passion and precision,
-                            using only the freshest ingredients and authentic recipes.
-                            Every box is sealed with care, every aroma tells a story,
-                            and every bite reminds you that great food is made with heart.</p>
-                        </li> 
+                            <p>From vibrant roses to delicate lilies, each arrangement is crafted 
+                            with passion and precision, using only the freshest flowers and timeless 
+                            designs. Every bundle is wrapped with care, every fragrance tells a story, 
+                            and every petal reminds you that true beauty is created with heart.</p>
+                        </li>
+
                         <li>
-                            <p>Semper lacus cursus porta primis ligula risus tempus,
-                            where taste meets convenience, and quality meets comfort.
-                            Whether it’s a quick lunch, a cozy dinner,
-                            or a midnight craving that can’t wait —
-                            we make sure your food arrives just the way it’s meant to be: hot, safe, and satisfying.</p>
-                        </li> 
+                            <p>Semper lacus cursus porta primis ligula risus tempus, where elegance 
+                            meets convenience and quality meets charm. Whether it’s a birthday surprise, 
+                            a romantic gesture, or a simple “thinking of you” moment — we make sure your 
+                            flowers arrive just the way they’re meant to be: fresh, fragrant, and breathtaking.</p>
+                        </li>
+
                         <li>
-                            <p>Because food isn’t just fuel — it’s how we share joy.</p>
-                        </li> 
+                            <p>Because flowers aren’t just gifts — they’re how we share joy. 🌸</p>
+                        </li>
                     </ul>   
                 </Col>
             </Row>

@@ -15,14 +15,14 @@
   --Lavishly-Yours-font: "Lavishly Yours", cursive;
   --Montserrat-font: "Montserrat", sans-serif;
 
-  /* Colors */
+  /* Colors 685a35 */
   --light-black: #333;
   --light-white: #f7f7f7;
-  --light-red: #711118;
+  --light-red: #685a35;
   --light-grey: #dcdcdc;
   --light-grey-2: #dddddd;
   --white: #fff;
-  --yellow: #ac9963;
+  --yellow: #bd9d44;
   --grey: #757575;
   --brown: #6f5e4d;
   --bg-coffee: #642f21;
@@ -80,9 +80,9 @@ a{
 
 /* Common Button  */
 
-.order-now{
-  color: var(--light-black) !important;
-  background-color: var(--yellow) !important;
+.shop-now{
+  color: var(--light-white) !important;
+  background-color: var(--light-red) !important;
   border-color: var(--yellow) !important;
   padding: 15px 38px;
   font-size: 18px;
@@ -94,8 +94,8 @@ a{
   transition: all 0.3s ease-in-out;
 }
 
-.order-now:hover,
-.order-now:focus{
+.shop-now:hover,
+.shop-now:focus{
   color: var(--white) !important;
   background: transparent;
   border-color:var(--white) !important;

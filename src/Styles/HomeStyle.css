@@ -1,6 +1,6 @@
 .hero-section{
     position: relative;
-    background: url("../assets/background.jpeg") no-repeat center center;
+    background: url("../assets/brands/banner.jpg") no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
     padding-top: 170px;
@@ -60,16 +60,129 @@
 
 /* home about */
 
+
+.category-links {
+    display: flex; /* Keeps items in a row */
+    justify-content: center; /* THIS CENTERS THE WHOLE ROW OF ITEMS */
+    gap: 20px; /* Space between the four category blocks */
+    max-width: 1200px; /* Limits the max width of the container for desktop */
+    margin: 0 auto; /* THIS CENTERS THE 'category-links' CONTAINER ITSELF */
+    padding: 0 15px; /* Padding for smaller screens to prevent items from touching edges */
+}
+
+/* Styling for Each Clickable Category Block */
+.category-item {
+    display: block; /* Make the whole area clickable */
+    text-decoration: none;
+    color: #333;
+    /* Updated flex-basis to ensure enough space for titles and responsiveness */
+    flex: 0 0 220px; /* Give a fixed minimum width, allows growth if space is available */
+    max-width: 100%; /* Ensure it doesn't get too wide on very large screens */
+    text-align: center; /* THIS CENTERS THE TEXT (title) INSIDE EACH ITEM */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Styling for Category Titles (BEST SELLERS, etc.) */
+.category-item .category-title { /* Make sure to target it correctly */
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    color: #333;
+    
+    /* Remove text-overflow: ellipsis and overflow: hidden if you want all text visible */
+    /* If you still want nowrap, ensure .category-item (or Col) is wide enough */
+    white-space: nowrap; /* Keep on one line */
+    
+    /* If nowrap is used, and it's still clipping,
+       the parent .category-item (or Bootstrap Col) is too narrow.
+       Adjust flex-basis or column breakpoints.
+       For now, let's allow some overflow visible to show the problem,
+       or make the .category-item wider. */
+    overflow: visible; /* Temporarily allow overflow to diagnose if clipping is due to width */
+    text-overflow: clip; /* No ellipsis if overflow is visible */
+
+    /* If 'PLANTS & SUCCULENTS' needs more space,
+       you might need a slightly larger font size for all titles,
+       or slightly larger column widths via Flexbox or Bootstrap Col props. */
+}
+
+/* Basic Reset for the Section */
+.category-grid {
+    padding: 40px 0; /* Add some vertical space around the whole section */
+    background-color: #ffffff; /* Ensure a clean white background */
+}
+
+
+/* Hover Effect: Scale up and add a subtle shadow to emphasize clickability */
+.category-item:hover {
+    color: #000;
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05); 
+}
+
+/* Styling for Category Titles (BEST SELLERS, etc.) */
+.category-title {
+    font-family: Arial, sans-serif; /* Use a clean font */
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 15px; /* Space below the title */
+    letter-spacing: 1px;
+    color: #333; /* Dark gray text */
+}
+
+/* Styling for the Image Container */
+.image-container {
+    overflow: hidden; /* Ensure images don't overflow the container */
+    border-radius: 4px;
+    background-color: #f7f7f7; /* Light background behind images */
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover; /* Ensures image covers the container without stretching */
+    aspect-ratio: 1 / 1; /* Makes the images perfectly square */
+    transition: opacity 0.3s ease; /* Smooth transition for hover */
+}
+
+/* Subtle dimming effect on image when hovering over the clickable block */
+.category-item:hover .image-container img {
+    opacity: 0.85;
+}
+
+/* --- Responsive Adjustments for Tablets and Phones --- */
+@media (max-width: 900px) {
+    .category-links {
+        flex-wrap: wrap; /* Allow items to wrap to the next line */
+        gap: 15px;
+    }
+    .category-item {
+        flex: 1 1 45%; /* Two items per row on smaller tablets */
+    }
+}
+
+@media (max-width: 550px) {
+    .category-item {
+        flex: 1 1 100%; /* One item per row on mobile phones */
+        margin-bottom: 20px; /* Space out the rows */
+    }
+}
+
 .about-section{
     padding-top: 80px;
     padding-bottom: 300px;
-    background:url(../assets/about.png) no-repeat center center;
+    height: 500px;
+    background:url(../assets/brands/about.jpg) no-repeat center center;
     background-size: cover;
     width: 100%;
 }
 
 .about-section h2{
     font-size: 2rem;
+    margin-top: 50px;
 }
 
 .about-section p{
@@ -99,23 +212,54 @@
 .about-box p{
     padding: 0 20px;
 }
+
+
 /* HOME MENU  */
 
-.menu-section{
-    padding-top: 100px;
-    padding-bottom: 100px;
+/* Reduce card size & image height for a tighter look */
+.menu-section .card {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  border-radius: 5px;
+  overflow: hidden;
+  max-width: 240px; /* 👈 shrink the card width */
 }
 
-.menu-section .Card{
-    width: 100%;
-    height: 100%;
+.menu-section .card-img-top {
+  height: 200px; /* 👈 reduces image height */
+  object-fit: cover;
+  transition: all 500ms ease-in-out;
 }
 
-.menu-section .card-img-top{
-    transition: all 500ms ease-in-out;
+/* Adjust spacing between cards */
+.menu-section .col-xl-2-4 {
+  flex: 0 0 20%;
+  max-width: 20%;
+  padding: 0 8px; /* reduced horizontal space */
+  margin-bottom: 25px;
+}
+
+/* Make text more compact */
+.menu-section .card-title {
+  font-size: 15px;
+}
+
+.menu-section .card-text {
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.menu-section .menu-price {
+  font-size: 15px;
+  padding: 5px 10px;
 }
 
 .menu-section h2{
+    margin-top: 80px;
     font-size: 2rem;
     color: var(--light-red);
 }
@@ -138,7 +282,7 @@
 }
 
 .menu-section .wishlist i:hover{
-    color: var(--light-red);
+    color: var(--yellow);
 }
 
 .menu-section .card-title{
@@ -177,7 +321,8 @@
 }
 
 .menu-section .card:hover .card-img-top{
-    transform: scale(1.1)
+    transform: scale(1.1);
+    transition: all 500ms ease-in-out;
 }
 
 .menu-section .card:hover .add-to-cart a{
@@ -192,13 +337,19 @@
 }
 
 .menu-section .ads-img1{
-    background: url(../assets/ads-img1.png) no-repeat center center;
+    background: url(../assets/brands/events.jpg) no-repeat center center;
     background-size: cover;
 }
 
 .menu-section .ads-img{
-    background: url(../assets/ads-img.png) no-repeat center center;
+    background: url(../assets/brands/subscription.jpg) no-repeat center center;
     background-size: cover;
+}
+
+.five-col-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
 }
 
 /* home promotion  */
@@ -224,7 +375,7 @@
 
 /* home parallax */
 .bg-parallax-scroll{
-    background: url(../assets/parallax.jpeg) no-repeat center center;
+    background: url(../assets/brands/parallax.jpg) no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
     width: 100%;
@@ -236,7 +387,7 @@
 
 .shop-section{
     padding: 100px 0 0;
-    background: var(--yellow);
+    background: #bea79e;
 }
 
 .shop-section h4{
@@ -288,7 +439,7 @@
 
 .blog-section{  
     padding: 80px 0 50px;
-    background: url('../assets/user/review.jpeg')no-repeat center center ;
+    background: url('../assets/brands/review.jpg')no-repeat center center ;
     background-size: cover;
     background-attachment: fixed;
 }
@@ -302,6 +453,7 @@
 }
 
 .blog-section .carousel.slide .carousel-inner .carousel-caption p {
+    color: black;
     font-size: 1.7rem;
     line-height: 1.45;
     font-weight: 400;
@@ -434,6 +586,11 @@ footer .copy_right ul li:last-child:after {
         background-attachment:scroll ;
         height: 500px;
     }
+    .col-lg-2-4 {
+        /* 100% / 5 = 20% */
+        flex: 0 0 auto;
+        width: 20%;
+    }
 }
 
 
@@ -449,6 +606,11 @@ footer .copy_right ul li:last-child:after {
   }
   .contact_section p {
     width: 100%;
+  }
+  .col-xl-2-4 {
+    /* 100% / 5 = 20% */
+    flex: 0 0 auto;
+    width: 20%;
   }
 }
 

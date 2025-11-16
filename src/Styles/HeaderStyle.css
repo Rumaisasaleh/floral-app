@@ -47,7 +47,7 @@ header .logo img{
 header .nav-link{
     display: inline;
     justify-content: center;
-    color: var(--white);
+    color: var(--light-black);
     padding: 0 1rem !important;
     font-size: 16px;
     font-weight:500;
@@ -58,6 +58,18 @@ header .nav-link{
     -ms-transition: all 15ms ease-in-out;
     -o-transition: all 15ms ease-in-out;
     -moz-transition: all 15ms ease-in-out;
+}
+
+header .active-menu-link{
+    color: var(--light-black); 
+     font-family: var(--Montserrat-font);
+    text-decoration: none;
+      font-size: 16px;
+    font-weight:500;
+}
+
+header .active-menu-link:hover {
+    color: #bd9d44 !important; 
 }
 
 header .sticky .nav-link{

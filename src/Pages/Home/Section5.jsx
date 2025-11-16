@@ -3,7 +3,7 @@ import { Container, Row, Col, Carousel } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import StoreIos from '../../assets/StoreIos.png'
 import Storeand from '../../assets/Storeand.png'
-import download2 from '../../assets/download2.jpeg'
+import download2 from '../../assets/brands/download2.jpg'
 import brand1 from '../../assets/brands/brand-11.png'
 import brand2 from '../../assets/brands/brand-12.png'
 import brand3 from '../../assets/brands/brand-13.png'
@@ -32,8 +32,8 @@ function Section5() {
                 <img src={Storeand}  alt="android" className='img-fluid store me-3' />
                 </Link>
                 </Col>
-                <Col lg={6}>
-                    <img src={download2} width={600} alt="shop" style={{paddingBottom:'50px', paddingTop:'-30px'}} className='img-fluid'/>                
+                <Col lg={6} style={{height:'540px'}}>
+                    <img src={download2} width={540} alt="shop" style={{paddingBottom:'50px', paddingTop:'-30px',marginTop:'-40px',marginLeft:'40px',borderRadius:'10px'}} className='img-fluid'/>                
                 </Col>
             </Row>
         </Container>
@@ -41,7 +41,7 @@ function Section5() {
 
     {/* ------------------------------------------------------------- */}
 
-      <section className="brand_section">
+      {/* <section className="brand_section">
         <Container>
           <Row>
             <Carousel>
@@ -96,7 +96,7 @@ function Section5() {
             </Carousel>
           </Row>
         </Container>
-      </section>
+      </section> */}
       
     </>
   )
