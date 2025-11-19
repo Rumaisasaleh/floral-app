@@ -42,8 +42,8 @@ function Section4() {
       </section>
 
       {/* bg parallax */}
-
-      <section className='bg-parallax-scroll'></section>
+{/* 
+      <section className='bg-parallax-scroll'></section> */}
     </>
   )
 }

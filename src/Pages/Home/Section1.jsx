@@ -18,7 +18,7 @@ function Section1() {
                                 <h4 className='big-text'>$5.45</h4>
                         </div>
                         </div> */}
-                        <Link to="/" className='btn shop-now'>
+                        <Link to="/catalog" className='btn shop-now'>
                             Shop Now
                         </Link>
                     </div>

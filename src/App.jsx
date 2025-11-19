@@ -15,7 +15,7 @@ function App() {
         <Header/>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/all-dishes" element={<AllDishesPage />} /> {/* New All Dishes Page */}
+          <Route path="/catalog" element={<AllDishesPage />} /> {/* New All Dishes Page */}
           <Route path="/product/:id" element={<ProductPage />} /> {/* Existing Product Page */}
           <Route path="/cart" element={<CartPage />} />
         </Routes>
