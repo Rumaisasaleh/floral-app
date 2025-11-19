@@ -33,7 +33,7 @@ function Section5() {
                 </Link>
                 </Col>
                 <Col lg={6} style={{height:'540px'}}>
-                    <img src={download2} width={540} alt="shop" style={{paddingBottom:'50px', paddingTop:'-30px',marginTop:'-40px',marginLeft:'40px',borderRadius:'10px'}} className='img-fluid'/>                
+                    <img src={download2} width={540} alt="shop" style={{paddingBottom:'50px', paddingTop:'-30px',marginTop:'-40px',marginLeft:'40px',borderRadius:'10px'}} className='img'/>                
                 </Col>
             </Row>
         </Container>

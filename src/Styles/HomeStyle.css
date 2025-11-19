@@ -580,7 +580,11 @@ footer .copy_right ul li:last-child:after {
     .about-box p{
         padding: 0;
     }
-
+    
+    .shop-section .img{
+        width: 380px;
+        padding-top: 30px;
+    }
     /* home parallax  */
     .bg-parallax-scroll{
         background-attachment:scroll ;
@@ -652,4 +656,21 @@ footer .copy_right ul li:last-child:after {
     .blog-section .carousel.slide .carousel-inner .carousel-caption p {
         font-size: 1rem;
     }
+}
+
+
+
+/* Styles applied when the screen is 768px wide or wider (tablets/laptops) */
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 750px;
+    margin: 0 auto;
+  }
+}
+
+/* Styles applied when the screen is 1200px wide or wider (large desktops) */
+@media screen and (min-width: 1200px) {
+  .container {
+    max-width: 1150px;
+  }
 }

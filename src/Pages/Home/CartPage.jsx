@@ -3,6 +3,8 @@ import { Container, Row, Col, Button, Form, FormControl } from 'react-bootstrap'
 import { useCart } from '../../context/CartContext';
 
 // --- Custom Styles to match the minimalist, divided theme ---
+// NOTE: I've added a media query approach for 'totalsBox' within the component logic 
+// to remove the border on mobile screens for a cleaner look.
 const customStyles = {
     // General Layout
     cartHeading: {
@@ -30,10 +32,6 @@ const customStyles = {
         color: '#666',
         marginTop: '3px',
     },
-    subscriptionPrice: {
-        fontSize: '0.8rem',
-        color: '#007bff', // Blue text for subscription option
-    },
     quantityControl: {
         border: '1px solid #ccc',
         borderRadius: '0',
@@ -60,9 +58,10 @@ const customStyles = {
         paddingTop: '5px',
     },
     // Cart Totals (Right Side)
+    // Removed borderLeft here, will apply it conditionally via CSS/logic
     totalsBox: {
-        borderLeft: '1px solid #ccc',
-        paddingLeft: '50px',
+        paddingLeft: '20px', // Default small padding
+        marginTop: '3rem', // Add space above totals on mobile
     },
     totalsHeading: {
         fontSize: '1.2rem',
@@ -83,7 +82,7 @@ const customStyles = {
     },
     totalsTotal: {
         fontWeight: 600,
-        fontSize: '1rem', // Smaller than subtotal in the image
+        fontSize: '1rem',
         display: 'flex',
         justifyContent: 'space-between',
         marginTop: '15px',
@@ -105,7 +104,7 @@ const customStyles = {
         fontSize: '0.9rem',
         height: '38px',
         border: '1px solid #ccc',
-        width: '180px',
+        width: '180px', // Fixed width for desktop
     },
     applyButton: {
         backgroundColor: '#fff',
@@ -125,18 +124,17 @@ function CartPage() {
     
     // --- Total Calculation Logic ---
     const calculateSubtotal = () => {
-        // Assume price is stored correctly and quantity is a property of the item
         return cartItems.reduce((total, item) => 
             total + (parseFloat(item.price || 0) * (item.quantity || 1)), 0
         );
     };
 
     const subtotal = calculateSubtotal().toFixed(2);
-    const shippingCost = 0.00; // Assuming 'Free' shipping
-    const taxEstimated = 0.00; // Assuming '$0.00' tax
+    const shippingCost = 0.00;
+    const taxEstimated = 0.00;
     const total = (parseFloat(subtotal) + shippingCost + taxEstimated).toFixed(2);
     
-    // --- Mock Data Extension for Visual Match (Keep if needed for display) ---
+    // Mock Data Extension for Visual Match 
     const renderCartItems = cartItems.map(item => ({
         ...item,
         details: item.details || "Mint / 100 mg / x1", 
@@ -145,101 +143,86 @@ function CartPage() {
     }));
     // -------------------------------------------------------------------------
 
-    // *** NEW FUNCTION: Handles the mailto redirect ***
+    // *** Handles the mailto redirect ***
     const handleCheckout = () => {
-        const recipientEmail = "sales@yourcompany.com"; // <-- Replace with your target email
+        const recipientEmail = "sales@yourcompany.com";
         const subject = "Quotation Request for Floral Items";
         
-        // 1. Build the body content line by line
         let bodyContent = "Hello,\n\nI would like to request a quotation for the following items:\n\n";
         
         renderCartItems.forEach(item => {
-            // Format each item line
             const line = `- ${item.title} | Details: ${item.details} | Qty: ${item.quantity} | Price: $${(parseFloat(item.price || 0) * item.quantity).toFixed(2)}`;
             bodyContent += line + "\n";
         });
 
         bodyContent += `\nTotal: $${total}\n\nThank you.`;
 
-        // 2. Encode the subject and body for the mailto URL
         const encodedSubject = encodeURIComponent(subject);
         const encodedBody = encodeURIComponent(bodyContent);
 
-        // 3. Create the final mailto link and open it
         const mailtoLink = `mailto:${recipientEmail}?subject=${encodedSubject}&body=${encodedBody}`;
         
         window.location.href = mailtoLink;
     };
     // ************************************************
 
-    const contentColSize = 7;
-    const totalsColSize = 5;
+    // Define column sizes for different screen sizes
+    // xs={12} ensures full width on extra-small/mobile screens.
+    const contentColSizes = { xs: 12, lg: 7 };
+    const totalsColSizes = { xs: 12, lg: 5 };
 
-    // // --- Mock Data Extension for Visual Match (Remove if your cartItems already have these fields) ---
-    // // This is used to replicate the exact fields shown in the image (details, subscription price)
-    // const renderCartItems = cartItems.map(item => ({
-    //     ...item,
-    //     // Mocking structure based on image, replace with real data if available
-    //     details: item.details || "Mint / 100 mg / x1", 
-    //     subscriptionPrice: item.subscriptionPrice || (parseFloat(item.price || 0) * 0.9).toFixed(2),
-    //     quantity: item.quantity || 1 // Fallback quantity
-    // }));
-    // // ------------------------------------------------------------------------------------------------
-
-    // // Splitting the content columns
-    // const contentColSize = 7;
-    // const totalsColSize = 5;
-
+    // Conditionally apply desktop-only styles
+    const getTotalsBoxStyles = () => {
+        const desktopStyles = {
+            ...customStyles.totalsBox,
+            borderLeft: '1px solid #ccc',
+            paddingLeft: '50px',
+            marginTop: '0', // Remove mobile margin on desktop
+        };
+        // Use a simple check or component-level logic since React-Bootstrap handles breakpoints
+        // We apply default mobile-first styles, then merge desktop styles for 'lg' or larger
+        return desktopStyles;
+    };
+    
     return (
         <Container className="py-5 mt-5">
             <Row className="justify-content-center">
                 <Col lg={11}>
-                    <div style={{ paddingLeft: '20px' }}>
-                        {/* <span style={{ fontSize: '0.9rem' }}>&lt; Back</span> */}
+                    <div className="ps-3 ps-lg-0" style={{ paddingLeft: '20px' }}>
                         <h1 style={customStyles.cartHeading}>Your Cart</h1>
                     </div>
 
                     <Row>
                         {/* Left Column: Product List and Coupon */}
-                        <Col lg={contentColSize} style={{ paddingRight: '30px' }}>
+                        {/* Use contentColSizes for responsive widths. Removed extra paddingRight for cleaner mobile layout. */}
+                        <Col {...contentColSizes} className="pe-lg-5"> 
                             
                             {/* Product List */}
                             {renderCartItems.map((item) => (
                                 <Row key={item.id} style={customStyles.productRow}>
-                                    {/* Remove button */}
+                                    {/* Remove button (Col xs={1} works on all sizes) */}
                                     <Col xs={1} onClick={() => removeFromCart(item.id)}>
                                         <span style={customStyles.removeItem}>&times;</span>
                                     </Col>
-                                    {/* Image */}
-                                    <Col xs={2}>
+                                    {/* Image (Col xs={3} adjusted from xs={2} for mobile spacing) */}
+                                    <Col xs={3} sm={2}>
                                         <img 
                                             src={item.image || 'placeholder.jpg'} 
                                             alt={item.title} 
                                             style={{ width: '80px', height: '80px', objectFit: 'cover' }} 
                                         />
                                     </Col>
-                                    {/* Title, Details, and Subscription Options */}
-                                    <Col xs={5}>
+                                    {/* Title, Details, and Subscription Options (Col xs={8} adjusted from xs={5}) */}
+                                    <Col xs={8} sm={5}>
                                         <p style={customStyles.productTitle}>{item.title}</p>
                                         <p style={customStyles.productDetails}>{item.details}</p>
-                                        <div className="mt-2">
-                                         {/* Display the standard price as simple text/label, NOT a radio button */}
-                                            {/* <p style={{ margin: '0', fontSize: '1rem', fontWeight: 'bold' }}>
-                                                ${parseFloat(item.price || 0).toFixed(2)}
-                                            </p> */}
-                                            {/* <Form.Check 
-                                                type="radio"
-                                                label={`$${item.subscriptionPrice} / month`}
-                                                name={`price-option-${item.id}`}
-                                                id={`option2-${item.id}`}
-                                                style={customStyles.subscriptionPrice}
-                                            /> */}
-                                        </div>
                                     </Col>
-                                    {/* Quantity and Price */}
-                                    <Col xs={4} className="d-flex justify-content-end align-items-center">
+                                    {/* Quantity and Price (Col xs={12} or xs={4}) 
+                                       Stack on XS, align right on SM/LG */}
+                                    <Col xs={12} sm={4} className="d-flex flex-column flex-sm-row justify-content-sm-end align-items-sm-center mt-3 mt-sm-0">
+                                        
                                         {/* Quantity Controls */}
-                                        <div className="d-flex align-items-center me-3">
+                                        <div className="d-flex align-items-center me-sm-3 mb-2 mb-sm-0">
                                             <Button 
                                                 variant="light" 
                                                 style={customStyles.quantityControl} 
@@ -264,9 +247,9 @@ function CartPage() {
                                         </div>
                                         
                                         {/* Final Price */}
-                                        <div className="text-end">
+                                        <div className="text-start text-sm-end">
                                             <p style={customStyles.productTitle}>${(parseFloat(item.price || 0) * item.quantity).toFixed(2)}</p>
-                                            {/* Sub price below final price as per screenshot */}
+                                            {/* Line-through price (kept for visual match) */}
                                             <p style={{...customStyles.productDetails, textDecoration: 'line-through'}}>
                                                 ${(parseFloat(item.price || 0) * item.quantity).toFixed(2)}
                                             </p> 
@@ -278,16 +261,19 @@ function CartPage() {
                             {/* Coupon Code and Update Cart */}
                             <div className="mt-5">
                                 <p style={{ fontSize: '0.9rem', color: '#000' }}>Have a coupon? Enter your code.</p>
-                                <Form className="d-flex align-items-center">
+                                {/* Adjusted Form to flex-wrap on mobile and full width for input */}
+                                <Form className="d-flex flex-wrap align-items-center">
                                     <FormControl 
                                         type="text" 
                                         placeholder="Coupon code" 
-                                        style={customStyles.couponInput}
+                                        // On mobile, take up full width below the button, and half on tablet/desktop
+                                        className="mb-2 mb-sm-0" 
+                                        style={{...customStyles.couponInput, width: '100%', maxWidth: '200px'}} 
                                     />
                                     <Button variant="light" style={customStyles.applyButton}>
                                         APPLY
                                     </Button>
-                                    <small className="ms-auto" style={{ cursor: 'pointer', fontSize: '0.8rem', color: '#666', textTransform: 'uppercase' }}>
+                                    <small className="ms-auto mt-2 mt-sm-0" style={{ cursor: 'pointer', fontSize: '0.8rem', color: '#666', textTransform: 'uppercase' }}>
                                         UPDATE CART
                                     </small>
                                 </Form>
@@ -295,18 +281,18 @@ function CartPage() {
                         </Col>
 
                         {/* Right Column: Cart Totals */}
-                        <Col lg={totalsColSize} style={customStyles.totalsBox}>
+                        {/* Use totalsColSizes for responsive widths. Added className to apply desktop styles conditionally. */}
+                        <Col {...totalsColSizes} 
+                             // Apply desktop-only styles only when the screen size is 'lg' or larger
+                             className="border-start-lg border-start-md border-start-0" 
+                             style={{
+                                 ...customStyles.totalsBox,
+                                 borderLeft: window.innerWidth >= 992 ? '1px solid #ccc' : 'none', // 992px is lg breakpoint
+                                 paddingLeft: window.innerWidth >= 992 ? '50px' : '20px',
+                                 marginTop: window.innerWidth < 992 ? '3rem' : '0',
+                             }}>
                             <h3 style={customStyles.totalsHeading}>Cart Totals</h3>
                             
-                            {/* <div style={customStyles.totalsRow}>
-                                <span>Shipping (3-5 Business Days)</span>
-                                <span>{shippingCost === 0 ? 'Free' : `$${shippingCost.toFixed(2)}`}</span>
-                            </div> */}
-                            {/* <div style={customStyles.totalsRow}>
-                                <span>TAX (estimated for the United States (US))</span>
-                                <span>${taxEstimated.toFixed(2)}</span>
-                            </div>
-                             */}
                             <div style={customStyles.totalsSeparator}></div>
                             
                             <div style={customStyles.totalsRow}>
@@ -325,8 +311,8 @@ function CartPage() {
                                 variant="dark" 
                                 className="w-100" 
                                 style={customStyles.checkoutButton}
-                                onClick={handleCheckout} // <--- This calls the function
-                                disabled={cartItems.length === 0} // Optional: Disable if cart is empty
+                                onClick={handleCheckout}
+                                disabled={cartItems.length === 0}
                             >
                                 PROCEED TO CHECKOUT
                             </Button>
