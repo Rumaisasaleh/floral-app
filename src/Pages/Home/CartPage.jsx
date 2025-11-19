@@ -259,14 +259,12 @@ function CartPage() {
                             ))}
                             
                             {/* Coupon Code and Update Cart */}
-                            <div className="mt-5">
+                            {/* <div className="mt-5">
                                 <p style={{ fontSize: '0.9rem', color: '#000' }}>Have a coupon? Enter your code.</p>
-                                {/* Adjusted Form to flex-wrap on mobile and full width for input */}
                                 <Form className="d-flex flex-wrap align-items-center">
                                     <FormControl 
                                         type="text" 
                                         placeholder="Coupon code" 
-                                        // On mobile, take up full width below the button, and half on tablet/desktop
                                         className="mb-2 mb-sm-0" 
                                         style={{...customStyles.couponInput, width: '100%', maxWidth: '200px'}} 
                                     />
@@ -277,7 +275,7 @@ function CartPage() {
                                         UPDATE CART
                                     </small>
                                 </Form>
-                            </div>
+                            </div> */}
                         </Col>
 
                         {/* Right Column: Cart Totals */}

@@ -8,7 +8,7 @@
     
 }
 
-.hero-section .price-badge{
+/* .hero-section .price-badge{
     background:  url("../assets/badge.png") no-repeat center center;
     background-size:contain;
     position: absolute;
@@ -17,7 +17,7 @@
     width:230px;
     height:260px;
     text-align: center;
-}
+} */
 
 .hero-section .badge-text{
     width: 100%;
@@ -374,13 +374,13 @@
 }
 
 /* home parallax */
-.bg-parallax-scroll{
+/* .bg-parallax-scroll{
     background: url(../assets/brands/parallax.jpg) no-repeat center center;
     background-size: cover;
     background-attachment: fixed;
     width: 100%;
     height: 700px;
-}
+} */
 
 
 /* home shop */
@@ -571,6 +571,15 @@ footer .copy_right ul li:last-child:after {
 @media (max-width:992px) {
     .about-section h2{
         font-size: 2.5rem;
+    }
+
+    .hero-section {
+        background-attachment: scroll; 
+        padding-top: 120px; 
+        padding-bottom: 120px;
+        background-position: center top !important; 
+        /* background-size: contain; */
+        /* background-image: url('../assets/brands/mobile-banner.jpg'); */
     }
 
     .about-section p{

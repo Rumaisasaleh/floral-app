@@ -30,7 +30,7 @@ function Home() {
            <Section4/>
     
         {/* home section5 shop */}
-           <Section5/>
+           {/* <Section5/> */}
            
         {/* {home section}   */}
            <Section6/>

@@ -55,10 +55,10 @@ function Header() {
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="ms-auto">
                             {/* Use Link or ScrollLink based on destination */}
-                            <Nav.Link as={ScrollLink} to="home" smooth={true} duration={600} offset={-70}>Home</Nav.Link>
+                            <Link to="/" className='active-menu-link'>HOME</Link>
                             <Nav.Link as={ScrollLink} to="about" smooth={true} duration={600} offset={-70}>About</Nav.Link>
                             <Link to="/all-dishes" className='active-menu-link'>OUR MENU</Link>
-                            <Nav.Link as={ScrollLink} to="shop" smooth={true} duration={600} offset={-70}>Shop</Nav.Link>
+                            {/* <Nav.Link as={ScrollLink} to="shop" smooth={true} duration={600} offset={-70}>Shop</Nav.Link> */}
                             <Nav.Link as={ScrollLink} to="blog" smooth={true} duration={600} offset={-70}>Blog</Nav.Link>
                             <Nav.Link as={ScrollLink} to="contact" smooth={true} duration={600} offset={-70}>Contact</Nav.Link>
 
